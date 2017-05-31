@@ -29,7 +29,7 @@ public class ListLocation extends AppCompatActivity {
 
 
     // TODO - insert your themoviedb.org API KEY here
-    private final static String API_KEY = "AIzaSyDN7RJFmImYAca96elyZlE5s_fhX-MMuhk";
+    public final static String API_KEY = "AIzaSyDN7RJFmImYAca96elyZlE5s_fhX-MMuhk";
 
 
     @Override
