@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorGreyLight"
+
+    android:padding="10dp"
+    android:verticalSpacing="10dp"
+    android:horizontalSpacing="10dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:weightSum="1"
+            android:layout_weight="0.5">
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+
+                <Button
+                    android:layout_height="match_parent"
+                    android:id="@+id/button1"
+                    android:background="@color/colorWhite"
+                    android:text="Martabak"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:stateListAnimator="@null"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/martabak2"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button2"
+                    android:background="@color/colorWhite"
+                    android:text="Ayam dan Bebek"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:stateListAnimator="@null"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ayam2"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button3"
+                    android:background="@color/colorWhite"
+                    android:text="Seafood"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:stateListAnimator="@null"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/seafood2"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:weightSum="1"
+            android:layout_weight="0.5">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button4"
+                    android:background="@color/colorWhite"
+                    android:text="Steak"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:stateListAnimator="@null"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/steak2"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button5"
+                    android:background="@color/colorWhite"
+                    android:text="Pastry"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:stateListAnimator="@null"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/donat2"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button6"
+                    android:background="@color/colorWhite"
+                    android:text="Fast Food"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:stateListAnimator="@null"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/fastfood"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:weightSum="1"
+            android:layout_weight="0.5">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button7"
+                    android:background="@color/colorWhite"
+                    android:text="Bakmi"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:stateListAnimator="@null"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/bakmi"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button8"
+                    android:background="@color/colorWhite"
+                    android:text="Fine Dining"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:stateListAnimator="@null"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/finedining"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="10dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button9"
+                    android:background="@color/colorWhite"
+                    android:text="Terdekat"
+                    android:textSize="13sp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:stateListAnimator="@null"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/terdekat"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
