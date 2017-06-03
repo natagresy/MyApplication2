@@ -18,4 +18,13 @@ public interface RetrofitMaps {
     @GET("api/place/nearbysearch/json?sensor=true")
     Call<Example> getNearbyPlaces(@Query("type") String type, @Query("location") String location, @Query("radius") int radius, @Query("key") String key);
 
+    @GET("api/v2.1/search")
+    Call<com.example.user.myapplication.ZOMATO.Example> getNearbyPlacesViaZomato(@Query("q") String q,
+                                           @Query("start") int start,
+                                           @Query("count") int count,
+                                           @Query("lat") double lat,
+                                           @Query("lon") double lon,
+                                           @Query("radius") double radius,
+                                           @Query("apikey") String apikey);
+
 }

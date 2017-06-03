@@ -17,8 +17,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.myapplication.POJO.Example;
-import com.example.user.myapplication.POJO.Result;
+import com.example.user.myapplication.ZOMATO.Example;
+import com.example.user.myapplication.ZOMATO.Restaurant;
+import com.example.user.myapplication.ZOMATO.Restaurant_;
 import com.google.android.gms.location.LocationRequest;
 
 import java.util.List;
@@ -50,14 +51,16 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
 
     // TODO - insert your themoviedb.org API KEY here
-    public final static String API_KEY = "AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU";
-
+    //public final static String API_KEY = "AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU";
+    public final static String API_KEY = "96ad755290420b10169661fd24185541";
     @Override
     public void onLocationChanged(Location location) {
         Log.d("ccc", "onLocationChanged");
         mLastLocation = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
+
+
         Log.d("aaa", String.valueOf(latitude));
         Log.d("aaa", String.valueOf(longitude));
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
@@ -69,13 +72,14 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
 
         //Call<Example> call = apiService.getNearbyPlaces("restaurant", -6.174465 + "," + 106.8227433, 3000, API_KEY);
-        Call<Example> call = apiService.getNearbyPlaces("restaurant", location.getLatitude() + "," + location.getLongitude(), 3000, API_KEY);
+        //Call<Example> call = apiService.getNearbyPlaces("restaurant", location.getLatitude() + "," + location.getLongitude(), 3000, API_KEY);
+        Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(), 3000, API_KEY);
         //Call<MoviesResponse> call = apiService.getTopRatedMovies(API_KEY, "1");
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
                 int statusCode = response.code();
-                List<Result> location = response.body().getResults();
+                List<Restaurant> location = response.body().getRestaurants();
                 recyclerView.setAdapter(new LocationAdapter(location, R.layout.list_item_movie, getApplicationContext()));
             }
 
