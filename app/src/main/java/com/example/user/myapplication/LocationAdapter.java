@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.user.myapplication.POJO.Result;
+//import com.example.user.myapplication.POJO.Resul;
+//import com.example.user.myapplication.ZOMATO.Restaurant;
+import com.example.user.myapplication.ZOMATO.Restaurant;
+import com.example.user.myapplication.ZOMATO.Restaurant_;
 
 import java.util.List;
 
@@ -17,7 +20,7 @@ import java.util.List;
  */
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieViewHolder>{
-    private List<Result> location;
+    private List<Restaurant> location;
     private int rowLayout;
     private Context context;
 
@@ -40,7 +43,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
         }
     }
 
-    public LocationAdapter(List<Result> movies, int rowLayout, Context context) {
+    public LocationAdapter(List<Restaurant> movies, int rowLayout, Context context) {
         this.location = movies;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -56,10 +59,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
-        holder.movieTitle.setText(location.get(position).getName());
+        holder.movieTitle.setText(location.get(position).getRestaurant().getName());
         //holder.data.setText(movies.get(position).getReleaseDate());
-        holder.movieDescription.setText(location.get(position).getVicinity());
-        //holder.rating.setText(movies.get(position).getVoteAverage().toString());
+        holder.movieDescription.setText(location.get(position).getRestaurant().getLocation().getAddress());
+        holder.rating.setText(location.get(position).getRestaurant().getUserRating().getRatingText());
     }
 
     @Override
