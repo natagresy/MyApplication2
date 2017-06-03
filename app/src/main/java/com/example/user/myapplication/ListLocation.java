@@ -1,53 +1,36 @@
 package com.example.user.myapplication;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.user.myapplication.ZOMATO.Example;
 import com.example.user.myapplication.ZOMATO.Restaurant;
-import com.example.user.myapplication.ZOMATO.Restaurant_;
-import com.google.android.gms.location.LocationRequest;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.Retrofit;
+
 
 /**
- * Created by bukalapak on 5/25/17.
+ * Created by Nathasa Gresy on 5/25/17.
  */
 
 public class ListLocation extends AppCompatActivity implements LocationListener {
     private static final String TAG = ListLocation.class.getSimpleName();
     protected LocationManager locationManager;
-    protected LocationListener locationListener;
-    protected Context context;
-    TextView txtLat;
-    String lat;
-    String provider;
-    //protected String latitude,longitude;
-    protected boolean gps_enabled, network_enabled;
     double latitude;
     double longitude;
     Location mLastLocation;
-    LocationRequest mLocationRequest;
 
 
     // TODO - insert your themoviedb.org API KEY here
@@ -59,29 +42,42 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         mLastLocation = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-
-
-        Log.d("aaa", String.valueOf(latitude));
-        Log.d("aaa", String.valueOf(longitude));
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        RetrofitMaps apiService =
-                ApiClient.getClient().create(RetrofitMaps.class);
-
-
-
+        Log.d("my location", String.valueOf(latitude));
+        Log.d("my location", String.valueOf(longitude));
+        RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
         //Call<Example> call = apiService.getNearbyPlaces("restaurant", -6.174465 + "," + 106.8227433, 3000, API_KEY);
         //Call<Example> call = apiService.getNearbyPlaces("restaurant", location.getLatitude() + "," + location.getLongitude(), 3000, API_KEY);
         Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(), 3000, API_KEY);
-        //Call<MoviesResponse> call = apiService.getTopRatedMovies(API_KEY, "1");
+
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
                 int statusCode = response.code();
-                List<Restaurant> location = response.body().getRestaurants();
+                final List<Restaurant> location = response.body().getRestaurants();
+                recyclerView.setHasFixedSize(true);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(new LocationAdapter(location, R.layout.list_item_movie, getApplicationContext()));
+                recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Restaurant resaurant = location.get(position);
+                        //Movie movie = movieList.get(position);
+                        Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+
+                    }
+                }));
             }
+
+
+
 
             @Override
             public void onFailure(Call<Example> call, Throwable t) {

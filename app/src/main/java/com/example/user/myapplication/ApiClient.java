@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by bukalapak on 5/25/17.
+ * Created by Nathasa Gresy on 5/25/17.
  */
 
 public class ApiClient {
