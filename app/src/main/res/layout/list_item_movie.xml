@@ -25,7 +25,8 @@
             android:paddingRight="16dp"
             android:textStyle="bold"
             android:textColor="@color/colorBlack"
-            android:textSize="16sp" />
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="13sp" />
 
 
         <TextView
