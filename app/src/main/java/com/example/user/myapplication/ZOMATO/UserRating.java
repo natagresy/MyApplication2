@@ -1,6 +1,8 @@
 
 package com.example.user.myapplication.ZOMATO;
 
+import android.widget.TextView;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -20,6 +22,9 @@ public class UserRating {
     private String votes;
 
     public String getAggregateRating() {
+        if (aggregateRating.equals("0")) {
+            setAggregateRating("unrated");
+        }
         return aggregateRating;
     }
 

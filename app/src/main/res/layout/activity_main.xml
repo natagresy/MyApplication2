@@ -10,14 +10,13 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         android:layout_above="@+id/btnshowall"
-        android:layout_alignParentTop="true"
-        android:background="#FFFFFF"/>
+        android:layout_alignParentTop="true"/>
 
     <Button
+        android:id="@+id/btnshowall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Show all restaurants in map"
-        android:id="@+id/btnshowall"
         android:onClick="startMaps"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />

@@ -8,10 +8,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-//import com.example.user.myapplication.POJO.Resul;
-//import com.example.user.myapplication.ZOMATO.Restaurant;
 import com.example.user.myapplication.ZOMATO.Restaurant;
 import com.example.user.myapplication.ZOMATO.Restaurant_;
+import com.example.user.myapplication.ZOMATO.UserRating;
 
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
     private List<Restaurant> location;
     private int rowLayout;
     private Context context;
+
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -62,8 +62,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
         holder.movieTitle.setText(location.get(position).getRestaurant().getName());
         //holder.data.setText(movies.get(position).getReleaseDate());
         holder.movieDescription.setText(location.get(position).getRestaurant().getLocation().getAddress());
-        holder.rating.setText(location.get(position).getRestaurant().getUserRating().getRatingText());
+        holder.rating.setText(location.get(position).getRestaurant().getUserRating().getAggregateRating());
     }
+
 
     @Override
     public int getItemCount() {

@@ -17,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.user.myapplication.ZOMATO.Example;
 import com.example.user.myapplication.ZOMATO.Restaurant;
@@ -37,7 +38,6 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     double longitude;
     Location mLastLocation;
 
-
     // TODO - insert your themoviedb.org API KEY here
     //public final static String API_KEY = "AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU";
     public final static String API_KEY = "96ad755290420b10169661fd24185541";
@@ -55,7 +55,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(), 3000, API_KEY);
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+     //   recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
@@ -65,7 +65,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(new LocationAdapter(location, R.layout.list_item_movie, getApplicationContext()));
+                recyclerView.setAdapter(new LocationAdapter(location, R.layout.row_layout, getApplicationContext()));
                 recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
@@ -117,30 +117,6 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         }
 
 
-//        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        RetrofitMaps apiService =
-//                ApiClient.getClient().create(RetrofitMaps.class);
-//
-//
-//        //Call<Example> call = apiService.getNearbyPlaces("restaurant", -6.174465 + "," + 106.8227433, 3000, API_KEY);
-//        Call<Example> call = apiService.getNearbyPlaces("restaurant", latitude + "," + longitude, 3000, API_KEY);
-//        //Call<MoviesResponse> call = apiService.getTopRatedMovies(API_KEY, "1");
-//        call.enqueue(new Callback<Example>() {
-//            @Override
-//            public void onResponse(Call<Example> call, Response<Example> response) {
-//                  int statusCode = response.code();
-//                  List<Result> location = response.body().getResults();
-//                  recyclerView.setAdapter(new LocationAdapter(location, R.layout.list_item_movie, getApplicationContext()));
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Example> call, Throwable t) {
-//                // Log error here since request failed
-//                Log.e(TAG, t.toString());
-//            }
-//        });
     }
 
 

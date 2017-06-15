@@ -6,6 +6,7 @@
 
     <color name="orange">#FF3909</color>
     <color name="colorAccentDark">#00B482</color>
+    <color name="colorRating">#ffcc00</color>
 
     <color name="colorBlack">#555555</color>
     <color name="colorWhite">#FFFFFF</color>
