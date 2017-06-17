@@ -48,13 +48,13 @@
                 android:layout_below="@+id/title" />
 
             <TextView
-                android:id="@+id/jarak"
+                android:id="@+id/address"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="60 mins"
-                android:layout_marginTop="15dp"
+                android:text="alamat"
+                android:layout_marginTop="5dp"
                 android:layout_alignStart="@+id/title"
                 android:layout_below="@+id/description" />
 
@@ -77,8 +77,7 @@
             android:id="@+id/item_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_margin="1dp"
-            android:src="@drawable/dessert"
+            android:layout_margin="2dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:layout_centerVertical="true"

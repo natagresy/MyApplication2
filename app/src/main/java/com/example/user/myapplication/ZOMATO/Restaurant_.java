@@ -1,6 +1,8 @@
 
 package com.example.user.myapplication.ZOMATO;
 
+import android.graphics.drawable.Drawable;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -206,6 +208,9 @@ public class Restaurant_ {
     }
 
     public String getFeaturedImage() {
+        if (featuredImage.equals("")) {
+            setFeaturedImage(null);
+        }
         return featuredImage;
     }
 
