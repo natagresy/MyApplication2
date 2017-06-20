@@ -17,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.user.myapplication.ZOMATO.Example;
@@ -25,6 +26,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.app.ProgressDialog;
 
 
 /**
@@ -37,6 +39,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     double latitude;
     double longitude;
     Location mLastLocation;
+    private ProgressBar spinner;
 
     // TODO - insert your themoviedb.org API KEY here
     //public final static String API_KEY = "AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU";
@@ -54,13 +57,19 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         //Call<Example> call = apiService.getNearbyPlaces("restaurant", location.getLatitude() + "," + location.getLongitude(), 3000, API_KEY);
         Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(), 3000, API_KEY);
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
      //   recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
                 int statusCode = response.code();
+
                 final List<Restaurant> location = response.body().getRestaurants();
+
+                spinner=(ProgressBar)findViewById(R.id.progressBar);
+                spinner.setVisibility(View.GONE);
+
                 recyclerView.setHasFixedSize(true);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mLayoutManager);
@@ -99,6 +108,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         Log.d("ccc", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         if (API_KEY.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please obtain your API KEY from themoviedb.org first!", Toast.LENGTH_LONG).show();
             return;
