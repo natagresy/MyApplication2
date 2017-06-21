@@ -209,7 +209,7 @@ public class Restaurant_ {
 
     public String getFeaturedImage() {
         if (featuredImage.equals("")) {
-            setFeaturedImage(null);
+            setFeaturedImage("http://www.sitechecker.eu/img/not-available.png");
         }
         return featuredImage;
     }

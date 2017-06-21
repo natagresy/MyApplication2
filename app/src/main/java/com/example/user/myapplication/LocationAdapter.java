@@ -1,10 +1,14 @@
 package com.example.user.myapplication;
 
+import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +23,8 @@ import com.example.user.myapplication.ZOMATO.Restaurant_;
 import com.example.user.myapplication.ZOMATO.UserRating;
 
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,6 +37,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
     private List<Restaurant> location;
     private int rowLayout;
     private Context context;
+    ImageLoader imageLoader;
 
 
 
@@ -54,29 +61,46 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
         }
     }
 
-    public LocationAdapter(List<Restaurant> movies, int rowLayout, Context context) {
-        this.location = movies;
+    public LocationAdapter(List<Restaurant> location, int rowLayout, Context context) {
+        this.location = location;
         this.rowLayout = rowLayout;
         this.context = context;
+
+        //Getting instance of Universal Image Loader
+        imageLoader = ((App)context.getApplicationContext()).getImageLoader();
     }
 
     @Override
-    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LocationAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         return new MovieViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, final int position) {
+    public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.namaResto.setText(location.get(position).getRestaurant().getName());
         holder.cuisine.setText(location.get(position).getRestaurant().getCuisines());
         holder.address.setText(location.get(position).getRestaurant().getLocation().getAddress());
         holder.rating.setText(location.get(position).getRestaurant().getUserRating().getAggregateRating());
-       // holder.item_image.setImageDrawable(Drawable.createFromPath(location.get(position).getRestaurant().getFeaturedImage()));
-        Picasso.with(context).load(location.get(position).getRestaurant().getFeaturedImage()).resize(60,60).into(holder.item_image);
-    }
-
+        ImageSize targetSize = new ImageSize(60, 60);
+        imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image,targetSize);
+        try{
+            imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image,targetSize);
+        }
+        catch (Exception e){
+            Log.d("catch", "test");
+                imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image,targetSize);
+            }
+        }
+      //  Picasso.with(context).load(location.get(position).getRestaurant().getFeaturedImage()).resize(60,60).into(holder.item_image);
+      /*  if(location.get(position).getRestaurant().getFeaturedImage().equals("")){
+            Picasso.with(context).load(location.get(position).getRestaurant().getFeaturedImage()).error(R.drawable.dessert).resize(60,60).into(holder.item_image);
+        }
+        else {
+            Picasso.with(context).load(location.get(position).getRestaurant().getFeaturedImage()).resize(60,60).into(holder.item_image);
+        }
+        */
 
     @Override
     public int getItemCount() {
