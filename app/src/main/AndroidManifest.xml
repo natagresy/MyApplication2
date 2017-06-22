@@ -31,7 +31,7 @@
             android:value="@string/google_maps_key"/>
 
         <activity
-            android:name=".ListLocation"
+            android:name=".MainActivity"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -40,13 +40,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MapsActivity"
+        <activity android:name=".ListLocation"
             android:label="Maps"
-            android:parentActivityName=".ListLocation">
+            android:parentActivityName=".MainActivity">
             <!--for adding back button in action bar-->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ListLocation" />
+                android:value=".MainActivity" />
         </activity>
 
     </application>

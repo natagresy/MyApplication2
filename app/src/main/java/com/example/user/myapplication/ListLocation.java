@@ -20,6 +20,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.user.myapplication.ZOMATO.Contoh;
+import com.example.user.myapplication.ZOMATO.Cuisine;
 import com.example.user.myapplication.ZOMATO.Example;
 import com.example.user.myapplication.ZOMATO.Restaurant;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -84,9 +87,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         Log.d("my location", String.valueOf(latitude));
         Log.d("my location", String.valueOf(longitude));
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
-        //Call<Example> call = apiService.getNearbyPlaces("restaurant", -6.174465 + "," + 106.8227433, 3000, API_KEY);
-        //Call<Example> call = apiService.getNearbyPlaces("restaurant", location.getLatitude() + "," + location.getLongitude(), 3000, API_KEY);
-        Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(), 3000, API_KEY);
+        Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(),3000,261, API_KEY);
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -138,11 +139,11 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
 
 
-    public void startMaps(View view)
+    /*public void startMaps(View view)
     {
         startActivity(new Intent(this, MapsActivity.class));
     }
-
+*/
 
 
     @Override

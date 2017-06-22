@@ -1,5 +1,6 @@
 package com.example.user.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,16 +10,26 @@ import android.widget.Toast;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.user.myapplication.ZOMATO.Example;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
+import retrofit2.Call;
+
+import static com.example.user.myapplication.ListLocation.API_KEY;
 
 public class MainActivity extends AppCompatActivity {
     private static ViewPager mPager;
     private static int currentPage = 0;
-    private static final Integer[] SLIDER= {R.drawable.bakery,R.drawable.bakmibaso,R.drawable.chinese,R.drawable.dessert,R.drawable.indonesian};
+    private static final Integer[] SLIDER= {R.drawable.bakery,
+            R.drawable.bakmibaso,
+            R.drawable.chinese,
+            R.drawable.dessert,
+            R.drawable.indonesian};
     private ArrayList<Integer> SLIDERArray = new ArrayList<Integer>();
 
     private void init() {
@@ -86,14 +97,18 @@ public class MainActivity extends AppCompatActivity {
         CustomGrid adapter = new CustomGrid(MainActivity.this, web, imageId);
         grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(adapter);
+        grid.setTextFilterEnabled(true);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+           //   Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this,ListLocation.class);
+                MainActivity.this.startActivity(i);
 
-            }
+                }
+
         });
 
     }

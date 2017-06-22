@@ -25,6 +25,7 @@ public interface RetrofitMaps {
                                            @Query("lat") double lat,
                                            @Query("lon") double lon,
                                            @Query("radius") double radius,
+                                           @Query("cuisines") int cuisines,
                                            @Query("apikey") String apikey);
 
 }

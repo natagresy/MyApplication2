@@ -25,9 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Show all restaurants in map"
-        android:onClick="startMaps"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
+    <!--android:onClick="startMaps"-->
 
 </RelativeLayout>
