@@ -24,6 +24,7 @@ import static com.example.user.myapplication.ListLocation.API_KEY;
 
 public class MainActivity extends AppCompatActivity {
     private static ViewPager mPager;
+    public static int kode_type;
     private static int currentPage = 0;
     private static final Integer[] SLIDER= {R.drawable.bakery,
             R.drawable.bakmibaso,
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             "Steak"
 
     };
+
     int[] imageId = {
             R.drawable.bakery,
             R.drawable.bakmibaso,
@@ -103,7 +105,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-           //   Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+           //Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+                if (position==0) kode_type =5;
+                else if(position==1)kode_type = 249;
+                else if(position==2)kode_type = 25;
+                else if(position==3)kode_type = 100;
+                else if(position==4)kode_type = 40;
+                else if(position==5)kode_type = 114;
+                else if(position==6)kode_type = 270;
+                else if(position==7)kode_type = 83;
+                else if(position==8)kode_type = 141;
+
+
                 Intent i = new Intent(MainActivity.this,ListLocation.class);
                 MainActivity.this.startActivity(i);
 
