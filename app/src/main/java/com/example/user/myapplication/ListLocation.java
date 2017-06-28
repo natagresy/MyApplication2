@@ -18,18 +18,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.user.myapplication.ZOMATO.Example;
 import com.example.user.myapplication.ZOMATO.Restaurant;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import android.app.ProgressDialog;
 
 
 /**
@@ -42,6 +37,8 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     protected LocationManager locationManager;
     double latitude;
     double longitude;
+    String typeCodeResponse ="";
+    String temp;
     Location mLastLocation;
     private ProgressBar spinner;
 
@@ -53,7 +50,16 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("ccc", "onCreate");
-        Log.d("ccc", String.valueOf(mainActivity.kode_type));
+        Log.d("checkList", String.valueOf(mainActivity.type_code.size()));
+        Log.d("checkList", String.valueOf(mainActivity.type_code));
+        for(Integer data : mainActivity.type_code) {
+            Log.d("datanya", data.toString());
+            //typeCodeResponse = data.toString();
+            typeCodeResponse = typeCodeResponse + data.toString()+"%2C";
+        }
+        Log.d("typeCodeResponse", typeCodeResponse);
+
+        mainActivity.type_code.size();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -86,7 +92,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         Log.d("my location", String.valueOf(latitude));
         Log.d("my location", String.valueOf(longitude));
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
-        Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(),3000,mainActivity.kode_type, API_KEY);
+        Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
