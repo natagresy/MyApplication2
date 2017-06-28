@@ -29,6 +29,8 @@ import com.nostra13.universalimageloader.core.assist.ImageSize;
 
 import java.util.List;
 
+import static com.example.user.myapplication.R.id.item_image;
+
 /**
  * Created by Nathasa Gresy on 5/25/17.
  */
@@ -83,24 +85,16 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
         holder.cuisine.setText(location.get(position).getRestaurant().getCuisines());
         holder.address.setText(location.get(position).getRestaurant().getLocation().getAddress());
         holder.rating.setText(location.get(position).getRestaurant().getUserRating().getAggregateRating());
-        ImageSize targetSize = new ImageSize(60, 60);
-        imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image,targetSize);
+        imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image);
         try{
-            imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image,targetSize);
+            imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image);
         }
         catch (Exception e){
             Log.d("catch", "test");
-                imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image,targetSize);
+                imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image);
             }
         }
-      //  Picasso.with(context).load(location.get(position).getRestaurant().getFeaturedImage()).resize(60,60).into(holder.item_image);
-      /*  if(location.get(position).getRestaurant().getFeaturedImage().equals("")){
-            Picasso.with(context).load(location.get(position).getRestaurant().getFeaturedImage()).error(R.drawable.dessert).resize(60,60).into(holder.item_image);
-        }
-        else {
-            Picasso.with(context).load(location.get(position).getRestaurant().getFeaturedImage()).resize(60,60).into(holder.item_image);
-        }
-        */
+
 
     @Override
     public int getItemCount() {

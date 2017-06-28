@@ -118,8 +118,9 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                     @Override
                     public void onClick(View view, int position) {
                         Restaurant resaurant = location.get(position);
-                        //Movie movie = movieList.get(position);
-                        Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(ListLocation.this,PlaceDetail.class);
+                        ListLocation.this.startActivity(i);
                     }
 
                     @Override

@@ -49,6 +49,15 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <activity android:name=".PlaceDetail"
+            android:label="Detail"
+            android:parentActivityName=".ListLocation">
+            <!--for adding back button in action bar-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ListLocation" />
+        </activity>
+
     </application>
 
 </manifest>
