@@ -38,9 +38,12 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     double latitude;
     double longitude;
     String typeCodeResponse ="";
+    int count =1;
     String temp;
     Location mLastLocation;
     private ProgressBar spinner;
+    private boolean loading = true;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
 
     // TODO - insert your themoviedb.org API KEY here
     //public final static String API_KEY = "AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU";
@@ -92,7 +95,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         Log.d("my location", String.valueOf(latitude));
         Log.d("my location", String.valueOf(longitude));
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
-        Call<Example> call = apiService.getNearbyPlacesViaZomato("", 1, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
+        Call<Example> call = apiService.getNearbyPlacesViaZomato("", count, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -110,7 +113,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setNestedScrollingEnabled(false);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(new LocationAdapter(location, R.layout.row_layout, getApplicationContext()));
@@ -128,6 +131,33 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
                     }
                 }));
+
+                recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+                {
+                    @Override
+                    public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+                    {
+                        if(dy > 0) //check for scroll down
+                        {
+                            visibleItemCount = mLayoutManager.getChildCount();
+                            totalItemCount = mLayoutManager.getItemCount();
+                            pastVisiblesItems = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+                            Log.d("paging", "visibleItemCount"+String.valueOf(visibleItemCount));
+                            Log.d("paging", "totalItemCount"+String.valueOf(totalItemCount));
+                            Log.d("paging", "positionView"+String.valueOf(pastVisiblesItems));
+                            if (loading)
+                            {
+                                if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
+                                {
+                                    loading = false;
+                                    Log.d("paging", "Last Item Wow !");
+                                    count = count + 20;
+                                    //Do pagination.. i.e. fetch new data
+                                }
+                            }
+                        }
+                    }
+                });
             }
 
 
