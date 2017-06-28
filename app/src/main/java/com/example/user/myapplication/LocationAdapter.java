@@ -25,7 +25,7 @@ import com.example.user.myapplication.ZOMATO.UserRating;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.List;
 
