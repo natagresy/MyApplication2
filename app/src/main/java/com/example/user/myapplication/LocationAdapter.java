@@ -2,6 +2,7 @@ package com.example.user.myapplication;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -93,6 +94,17 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
             Log.d("catch", "test");
                 imageLoader.displayImage(location.get(position).getRestaurant().getFeaturedImage(),holder.item_image);
             }
+
+        holder.item_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("catch", "test1");
+                Intent intent = new Intent(context, PlaceDetail.class);
+                intent.putExtra("detil_foto", location.get(position).getRestaurant().getFeaturedImage());
+                context.startActivity(intent);
+            }
+        });
+
         }
 
 

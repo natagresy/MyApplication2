@@ -118,12 +118,19 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(new LocationAdapter(location, R.layout.row_layout, getApplicationContext()));
                 recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+
                     @Override
                     public void onClick(View view, int position) {
+                        Log.d("catch", "test");
                         Restaurant resaurant = location.get(position);
                         // Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(ListLocation.this,PlaceDetail.class);
-                        ListLocation.this.startActivity(i);
+                        i.putExtra("detil_nama", resaurant.getRestaurant().getName());
+                        i.putExtra("detil_rating", resaurant.getRestaurant().getUserRating().getAggregateRating());
+                        i.putExtra("detil_cuisine", resaurant.getRestaurant().getCuisines());
+                        i.putExtra("detil_alamat", resaurant.getRestaurant().getLocation().getAddress());
+                        i.putExtra("detil_foto", resaurant.getRestaurant().getFeaturedImage());
+                        view.getContext().startActivity(i);
                     }
 
                     @Override
