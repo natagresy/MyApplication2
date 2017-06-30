@@ -32,18 +32,18 @@ public class PlaceDetail extends AppCompatActivity {
         TextView detil_alamat = (TextView)findViewById(R.id.detail_address);
         ImageView detil_foto = (ImageView)findViewById(R.id.foto_detail);
 
-        String nama = getIntent().getExtras().getString("detil_nama");
-        String rating = getIntent().getExtras().getString("detil_rating");
-        String cuisine = getIntent().getExtras().getString("detil_cuisine");
-        String alamat = getIntent().getExtras().getString("detil_alamat");
-        String artUrl = getIntent().getStringExtra("detil_foto");
+//        String nama = getIntent().getExtras().getString("detil_nama");
+//        String rating = getIntent().getExtras().getString("detil_rating");
+//        String cuisine = getIntent().getExtras().getString("detil_cuisine");
+//        String alamat = getIntent().getExtras().getString("detil_alamat");
+//        String artUrl = getIntent().getStringExtra("detil_foto");
 
      //   imageLoader.displayImage(getIntent().getStringExtra("detil_foto"));
 
-        detil_nama.setText(nama);
-        detil_rating.setText(rating);
-        detil_cuisine.setText(cuisine);
-        detil_alamat.setText(alamat);
+//        detil_nama.setText(nama);
+//        detil_rating.setText(rating);
+//        detil_cuisine.setText(cuisine);
+//        detil_alamat.setText(alamat);
       // detil_foto.setImageBitmap(artUrl);
 
     }

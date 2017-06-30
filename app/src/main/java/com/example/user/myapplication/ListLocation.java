@@ -19,8 +19,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.example.user.myapplication.ZOMATO.Example;
-import com.example.user.myapplication.ZOMATO.Restaurant;
+import com.example.user.myapplication.POJO.Example;
+import com.example.user.myapplication.POJO.Result;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,9 +45,9 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
-    // TODO - insert your themoviedb.org API KEY here
-    //public final static String API_KEY = "AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU";
-    public final static String API_KEY = "96ad755290420b10169661fd24185541";
+
+    public final static String API_KEY = "AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU";
+    //public final static String API_KEY = "96ad755290420b10169661fd24185541";
 
 
     @Override
@@ -55,10 +55,10 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         Log.d("ccc", "onCreate");
         Log.d("checkList", String.valueOf(mainActivity.type_code.size()));
         Log.d("checkList", String.valueOf(mainActivity.type_code));
-        for(Integer data : mainActivity.type_code) {
-            Log.d("datanya", data.toString());
+        for(String data : mainActivity.keyword) {
+            //Log.d("datanya", data.toString());
             //typeCodeResponse = data.toString();
-            typeCodeResponse = typeCodeResponse + data.toString()+"%2C";
+            typeCodeResponse = typeCodeResponse + data+"%20";
         }
         Log.d("typeCodeResponse", typeCodeResponse);
 
@@ -92,10 +92,12 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         mLastLocation = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-        Log.d("my location", String.valueOf(latitude));
-        Log.d("my location", String.valueOf(longitude));
+        Log.d("myloc", String.valueOf(latitude));
+        Log.d("myloc", String.valueOf(longitude));
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
-        Call<Example> call = apiService.getNearbyPlacesViaZomato("", count, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
+        //Call<Example> call = apiService.getNearbyPlacesViaZomato("", count, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
+        Call<Example> call = apiService.getNearbyPlaces("restaurant", typeCodeResponse, location.getLatitude() + "," + location.getLongitude(), 300000, API_KEY);
+
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -105,7 +107,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
             public void onResponse(Call<Example> call, Response<Example> response) {
                 int statusCode = response.code();
 
-                final List<Restaurant> location = response.body().getRestaurants();
+                final List<Result> location = response.body().getResults();
 
                 //loading spinner
                 spinner=(ProgressBar)findViewById(R.id.progressBar);
@@ -122,14 +124,14 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                     @Override
                     public void onClick(View view, int position) {
                         Log.d("catch", "test");
-                        Restaurant resaurant = location.get(position);
+                        Result result = location.get(position);
                         // Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(ListLocation.this,PlaceDetail.class);
-                        i.putExtra("detil_nama", resaurant.getRestaurant().getName());
-                        i.putExtra("detil_rating", resaurant.getRestaurant().getUserRating().getAggregateRating());
-                        i.putExtra("detil_cuisine", resaurant.getRestaurant().getCuisines());
-                        i.putExtra("detil_alamat", resaurant.getRestaurant().getLocation().getAddress());
-                        i.putExtra("detil_foto", resaurant.getRestaurant().getFeaturedImage());
+//                        i.putExtra("detil_nama", resaurant.getRestaurant().getName());
+//                        i.putExtra("detil_rating", resaurant.getRestaurant().getUserRating().getAggregateRating());
+//                        i.putExtra("detil_cuisine", resaurant.getRestaurant().getCuisines());
+//                        i.putExtra("detil_alamat", resaurant.getRestaurant().getLocation().getAddress());
+//                        i.putExtra("detil_foto", resaurant.getRestaurant().getFeaturedImage());
                         view.getContext().startActivity(i);
                     }
 
