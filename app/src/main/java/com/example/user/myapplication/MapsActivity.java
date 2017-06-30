@@ -158,7 +158,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         RetrofitMaps apiService =
                 ApiClient.getClient().create(RetrofitMaps.class);
 
-        Call<Example> call = apiService.getNearbyPlaces(type, latitude + "," + longitude, PROXIMITY_RADIUS, API_KEY);
+        Call<Example> call = apiService.getNearbyPlaces(type,"", latitude + "," + longitude, PROXIMITY_RADIUS, API_KEY);
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {

@@ -17,6 +17,7 @@ import me.relex.circleindicator.CircleIndicator;
 public class MainActivity extends AppCompatActivity {
     private static ViewPager mPager;
     public static ArrayList<Integer> type_code = new ArrayList<Integer>();
+    public static ArrayList<String> keyword = new ArrayList<String >();
     public String query;
 
     private static int currentPage = 0;
@@ -101,56 +102,40 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
            //Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
                 if(position==0){
-                    type_code.clear();
-                    type_code.add(5);
-                    Log.d("tesList", type_code.toString());
+                    keyword.clear();
+                    keyword.add("Bakery");
                 }
                 else if(position==1){
-                    type_code.clear();
-                    type_code.add(261);
-                    type_code.add(249);
+                    keyword.clear();
+                    keyword.add("Bakso");
                 }
                 else if(position==2){
-                    type_code.clear();
-                    type_code.add(25);
+                    keyword.clear();
+                    keyword.add("chinese");
                 }
                 else if(position==3){
-                    type_code.clear();
-                    type_code.add(100);
-                    type_code.add(233);
+                    keyword.clear();
+                    keyword.add("ice");
                 }
                 else if(position==4){
-                    type_code.clear();
-                    type_code.add(168);
-                    type_code.add(193);
-                    type_code.add(40);
-                    type_code.add(177);
+                    keyword.clear();
+                    keyword.add("burger");
                 }
                 else if(position==5){
-                    type_code.clear();
-                    type_code.add(114);
-                    type_code.add(237);
-                    type_code.add(239);
-                    type_code.add(240);
-                    type_code.add(235);
-                    type_code.add(260);
-                    type_code.add(234);
+                    keyword.clear();
+                    keyword.add("martabak");
                 }
                 else if(position==6){
-                    type_code.clear();
-                    type_code.add(161);
-                    type_code.add(270);
-                    type_code.add(247);
-                    type_code.add(268);
-                    type_code.add(164);
+                    keyword.clear();
+                    keyword.add("kopi");
                 }
                 else if(position==7){
-                    type_code.clear();
-                    type_code.add(83);
+                    keyword.clear();
+                    keyword.add("seafood");
                 }
                 else if(position==8){
-                    type_code.clear();
-                    type_code.add(141);
+                    keyword.clear();
+                    keyword.add("steak");
                 }
                 Intent i = new Intent(MainActivity.this,ListLocation.class);
                 MainActivity.this.startActivity(i);
