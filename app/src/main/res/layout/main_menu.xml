@@ -11,7 +11,7 @@
     tools:context=".MainActivity" >
 
     <SearchView
-        android:id="@+id/search"
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@android:drawable/ic_menu_search"
@@ -22,6 +22,8 @@
         android:background="#fff"
         android:queryHint="What do you want to eat?"
         android:iconifiedByDefault="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:textSize="15sp"/>
 
     <RelativeLayout
