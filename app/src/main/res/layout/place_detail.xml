@@ -69,12 +69,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill_horizontal"
-                    android:padding="5dp"
                     android:layout_marginBottom="10dp">
 
 
             <Button
                     android:id="@+id/btn_call"
+                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/rsz_phone"
@@ -83,10 +83,11 @@
                     android:text="Call"
                     android:textStyle="bold"
                     android:textColor="@color/colorText"
-                    android:background="@color/colorWhite"/>
+                    android:background="?attr/selectableItemBackground"/>
 
                 <Button
                     android:id="@+id/btn_route"
+                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -95,7 +96,7 @@
                     android:textStyle="bold"
                     android:text="Direction"
                     android:textColor="@color/colorText"
-                    android:background="@color/colorWhite"/>
+                    android:background="?attr/selectableItemBackground"/>
 
 
                 </LinearLayout>
@@ -111,7 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/rsz_marker"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="20dp"
                         android:padding="5dp"
                         android:text="address"
                         android:textColor="@color/colorBlack"
@@ -122,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/rsz_clock"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="20dp"
                         android:padding="5dp"
                         android:text="opening hours"
                         android:textColor="@color/colorBlack"/>

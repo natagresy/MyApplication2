@@ -2,6 +2,7 @@ package com.example.user.myapplication;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,7 +37,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
         ImageView item_image;
         TextView namaResto;
         TextView address;
-        TextView cuisine;
+        TextView open_now;
         TextView rating;
         TextView distance;
 
@@ -47,7 +48,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
             item_image = (ImageView) v.findViewById(R.id.item_image);
             namaResto = (TextView) v.findViewById(R.id.title);
             address = (TextView) v.findViewById(R.id.address);
-            cuisine = (TextView) v.findViewById(R.id.description);
+            open_now = (TextView) v.findViewById(R.id.description);
             rating = (TextView) v.findViewById(R.id.rating);
             distance =(TextView) v.findViewById(R.id.distance);
         }
@@ -85,14 +86,16 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
         }
         try{
             if(location.get(position).getOpeningHours().getOpenNow()==true){
-                holder.cuisine.setText("BUKA");
+                holder.open_now.setText("Open");
+                holder.open_now.setTextColor(Color.GREEN);
             }
             else{
-                holder.cuisine.setText("TUTUP");
+                holder.open_now.setText("Closed");
+                holder.open_now.setTextColor(Color.RED);
             }
         }
         catch (Exception e){
-            holder.cuisine.setText("");
+            holder.open_now.setText("");
         }
 
         try{
