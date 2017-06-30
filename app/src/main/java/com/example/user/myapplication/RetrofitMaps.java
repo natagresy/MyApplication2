@@ -23,7 +23,7 @@ public interface RetrofitMaps {
                                   @Query("key") String key);
 
     @GET("api/place/details/json")
-    Call<Example> getDetailPlaces(@Query("placeid") String placeid,
+    Call<com.example.user.myapplication.PLACEDETAIL.Example> getDetailPlaces(@Query("placeid") String placeid,
                                   @Query("key") String key);
 
     @GET("api/v2.1/search")

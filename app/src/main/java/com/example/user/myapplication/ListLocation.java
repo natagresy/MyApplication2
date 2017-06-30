@@ -127,7 +127,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                         Result result = location.get(position);
                         // Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(ListLocation.this,PlaceDetail.class);
-//                        i.putExtra("detil_nama", resaurant.getRestaurant().getName());
+                        i.putExtra("id", result.getPlaceId());
 //                        i.putExtra("detil_rating", resaurant.getRestaurant().getUserRating().getAggregateRating());
 //                        i.putExtra("detil_cuisine", resaurant.getRestaurant().getCuisines());
 //                        i.putExtra("detil_alamat", resaurant.getRestaurant().getLocation().getAddress());
