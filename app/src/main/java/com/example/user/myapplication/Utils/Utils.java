@@ -6,7 +6,7 @@ package com.example.user.myapplication.Utils;
 import com.example.user.myapplication.ZOMATO.Location;
 
 
-public class Distance {
+public class Utils {
     public static double distance(double lat1, double lon1, double lat2, double lon2, char unit) {
         double theta = lon1 - lon2;
         double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
@@ -34,4 +34,15 @@ public class Distance {
     public static double rad2deg(double rad) {
         return (rad * 180.0 / Math.PI);
     }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+
+
 }

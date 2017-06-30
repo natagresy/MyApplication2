@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.user.myapplication.POJO.Result;
+import com.example.user.myapplication.Utils.Distance;
+import com.example.user.myapplication.Utils.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
@@ -20,10 +22,12 @@ import java.util.List;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieViewHolder>{
     private List<Result> location;
+    public static String id;
     private int rowLayout;
     private Context context;
     ImageLoader imageLoader;
     String refrence;
+    MainActivity mainActivity = new MainActivity();
 
 
 
@@ -34,6 +38,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
         TextView address;
         TextView cuisine;
         TextView rating;
+        TextView distance;
 
 
         public MovieViewHolder(View v) {
@@ -44,6 +49,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
             address = (TextView) v.findViewById(R.id.address);
             cuisine = (TextView) v.findViewById(R.id.description);
             rating = (TextView) v.findViewById(R.id.rating);
+            distance =(TextView) v.findViewById(R.id.distance);
         }
     }
 
@@ -66,6 +72,11 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.namaResto.setText(location.get(position).getName());
+        double latRestaurant = location.get(position).getGeometry().getLocation().getLat();
+        double longRestaurant = location.get(position).getGeometry().getLocation().getLng();
+        double distance1 = Utils.distance(mainActivity.latitude, mainActivity.longitude, latRestaurant, longRestaurant, 'K');
+        double fixDistance = Utils.round(distance1, 2);
+        holder.distance.setText(String.valueOf(fixDistance+" KM"));
         try {
             holder.rating.setText(location.get(position).getRating().toString());
         }
@@ -86,7 +97,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
 
         try{
             refrence = location.get(position).getPhotos().get(0).getPhotoReference();
-            imageLoader.displayImage("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+refrence+"&key=AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU", holder.item_image);
+            imageLoader.displayImage("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+refrence+"&key=AIzaSyAUF3gvrbu8V0_-RPPe44Xl_2Gwyw6bVlw", holder.item_image);
             Log.d("blabla", refrence);
         }
         catch(Exception e){
@@ -94,6 +105,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
             imageLoader.displayImage("http://www.sitechecker.eu/img/not-available.png", holder.item_image);
             Log.d("blabla", refrence);
         }
+        id = location.get(position).getPlaceId();
+
+
 
 
 

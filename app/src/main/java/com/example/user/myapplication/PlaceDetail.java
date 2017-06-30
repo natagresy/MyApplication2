@@ -18,7 +18,7 @@ import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
  */
 
 public class PlaceDetail extends AppCompatActivity {
-    private ImageLoader mImageLoader ;
+    private ImageLoader mImageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
