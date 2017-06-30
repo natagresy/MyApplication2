@@ -46,7 +46,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
 
-    public final static String API_KEY = "AIzaSyDiC5xJIZObEXA6T8eiM6MBBoELDVVGZSU";
+    public final static String API_KEY = "AIzaSyAUF3gvrbu8V0_-RPPe44Xl_2Gwyw6bVlw";
     //public final static String API_KEY = "96ad755290420b10169661fd24185541";
 
 

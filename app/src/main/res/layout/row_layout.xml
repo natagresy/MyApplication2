@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/description"
-                android:textColor="@color/colorGrey"
+                android:textStyle="bold"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,13 +73,12 @@
 
             <TextView
                 android:id="@+id/distance"
-                android:layout_below="@+id/title"
-                android:layout_toEndOf="@+id/description"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:text="0 km"/>
+                android:text="0 km"
+                android:layout_alignBaseline="@id/address"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
 
