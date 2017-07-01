@@ -6,12 +6,15 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <android.support.v7.widget.CardView
         android:id="@+id/card_viewdetail"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardUseCompatPadding="true">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,14 +27,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_weight="1"
-                android:scaleType="fitCenter" />
+                android:scaleType="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:paddingStart="10dp"
+                android:background="@color/colorDetail"
                 android:orientation="vertical">
 
                 <TextView
@@ -42,9 +44,10 @@
                     android:layout_gravity="left"
                     android:fontFamily="sans-serif"
                     android:textSize="20sp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="3dp"
                     android:text="Title"
+                    android:textColor="@color/colorWhite"
                     android:textAppearance="?android:attr/textAppearanceLarge"/>
                 <TextView
                     android:id="@+id/rating_detail"
@@ -53,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:text="rating"
+                    android:textColor="@color/colorWhite"
                     android:layout_gravity="left"
                     android:fontFamily="sans-serif" />
                 <TextView
@@ -60,16 +64,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:text="cuisine"
+                    android:text="telepon"
+                    android:textColor="@color/colorWhite"
                     android:layout_gravity="left"
                     android:fontFamily="sans-serif"
                     android:layout_marginBottom="20dp"/>
 
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill_horizontal"
-                    android:layout_marginBottom="10dp">
+                    android:layout_gravity="fill_horizontal">
 
 
             <Button
@@ -105,6 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:layout_gravity="fill"
                     android:padding="10dp">
 
                     <TextView
@@ -120,6 +127,7 @@
 
                     <TextView
                         android:id="@+id/open_hour"
+                        android:textAlignment="viewStart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/rsz_clock"
@@ -130,8 +138,8 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+    </ScrollView>
     </LinearLayout>

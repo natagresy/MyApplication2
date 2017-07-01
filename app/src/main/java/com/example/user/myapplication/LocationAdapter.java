@@ -73,6 +73,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.namaResto.setText(location.get(position).getName());
+        holder.address.setText(location.get(position).getVicinity());
         double latRestaurant = location.get(position).getGeometry().getLocation().getLat();
         double longRestaurant = location.get(position).getGeometry().getLocation().getLng();
         double distance1 = Utils.distance(mainActivity.latitude, mainActivity.longitude, latRestaurant, longRestaurant, 'K');
@@ -104,7 +105,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
             Log.d("blabla", refrence);
         }
         catch(Exception e){
-            refrence = "aaaa";
             imageLoader.displayImage("http://www.sitechecker.eu/img/not-available.png", holder.item_image);
             Log.d("blabla", refrence);
         }

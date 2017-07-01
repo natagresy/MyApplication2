@@ -46,11 +46,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         LocationListener {
 
     private GoogleMap mMap;
-    double latitude;
-    double longitude;
-    double lat;
-    double lon;
-    String id;
+    double latitude, longitude;
+    double lat, lon;
+    String id, name;
 
     private int PROXIMITY_RADIUS = 10000;
     GoogleApiClient mGoogleApiClient;
@@ -65,6 +63,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         lat = getIntent().getExtras().getDouble("lat");
         lon = getIntent().getExtras().getDouble("lon");
         id = getIntent().getExtras().getString("id1");
+        name = getIntent().getExtras().getString("name");
         Log.d("qwertyuio", "latitude "+String.valueOf(lat));
         Log.d("qwertyuio", "longitude "+String.valueOf(lon));
         Log.d("qwertyuio", "id ini "+String.valueOf(id));
@@ -127,124 +126,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
         }
         goToLocation();
-
-//        Button btnRestaurant = (Button) findViewById(R.id.btnRestaurant);
-//        btnRestaurant.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                build_retrofit_and_get_response("restaurant");
-//            }
-//        });
-//
-//        Button btnHospital = (Button) findViewById(R.id.btnHospital);
-//        btnHospital.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                build_retrofit_and_get_response("hospital");
-//            }
-//        });
-//
-//        Button btnSchool = (Button) findViewById(R.id.btnSchool);
-//        btnSchool.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                build_retrofit_and_get_response("school");
-//            }
-//        });
-    }
-
-    private void build_retrofit_and_get_response(String type) {
-
-//        String url = "https://maps.googleapis.com/maps/";
-//
-//
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(url)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        RetrofitMaps service = retrofit.create(RetrofitMaps.class);
-//        RetrofitMaps apiService =
-//                ApiClient.getClient().create(RetrofitMaps.class);
-//        Call<Example> call = apiService.getDetailPlaces(id,API_KEY);
-//
-//        //Call<Example> call = apiService.getNearbyPlaces(type,"", latitude + "," + longitude, PROXIMITY_RADIUS, API_KEY);
-//        call.enqueue(new Callback<Example>() {
-//            @Override
-//            public void onResponse(Call<Example> call, Response<Example> response) {
-//                try {
-//                    mMap.clear();
-//                    // This loop will go through all the results and add marker on each location.
-//                    //for (int i = 0; i < response.body().getResults().size(); i++) {
-////                        Double lat = response.body().getResults().get(i).getGeometry().getLocation().getLat();
-////                        Double lng = response.body().getResults().get(i).getGeometry().getLocation().getLng();
-////                        String placeName = response.body().getResults().get(i).getName();
-////                        String vicinity = response.body().getResults().get(i).getVicinity();
-//                        MarkerOptions markerOptions = new MarkerOptions();
-//                        LatLng latLng = new LatLng(lat, lon);
-//                        // Position of Marker on Map
-//                        markerOptions.position(latLng);
-//                        // Adding Title to the Marker
-//                        markerOptions.title("tau ah");
-//                        // Adding Marker to the Camera.
-//                        Marker m = mMap.addMarker(markerOptions);
-//                        // Adding colour to the marker
-//                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-//                        // move map camera
-//                        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-//                        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-//                    //}
-//                } catch (Exception e) {
-//                    Log.d("onResponse", "There is an error");
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Example> call, Throwable t) {
-//                Log.d("onFailure", t.toString());
-//            }
-//        });
     }
 
     private void goToLocation(){
-        RetrofitMaps apiService =
-                ApiClient.getClient().create(RetrofitMaps.class);
-        Call<Example> call = apiService.getDetailPlaces(id,API_KEY);
-
-        //Call<Example> call = apiService.getNearbyPlaces(type,"", latitude + "," + longitude, PROXIMITY_RADIUS, API_KEY);
-        call.enqueue(new Callback<Example>() {
-            @Override
-            public void onResponse(Call<Example> call, Response<Example> response) {
-                try {
-                    mMap.clear();
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    LatLng latLng = new LatLng(lat, lon);
-                    // Position of Marker on Map
-                    markerOptions.position(latLng);
-                    // Adding Title to the Marker
-                    markerOptions.title("tau ah");
-                    // Adding Marker to the Camera.
-                    Marker m = mMap.addMarker(markerOptions);
-                    // Adding colour to the marker
-                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                    // move map camera
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                    mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-                    //}
-                } catch (Exception e) {
-                    Log.d("onResponse", "There is an error");
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Example> call, Throwable t) {
-                Log.d("onFailure", t.toString());
-            }
-        });
+        try {
+            //mMap.clear();
+            MarkerOptions markerOptions = new MarkerOptions();
+            LatLng latLng = new LatLng(lat, lon);
+            markerOptions.position(latLng);
+            markerOptions.title(name);
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bakery));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+            mMap.addMarker(markerOptions);
+        } catch (Exception e) {
+            Log.d("onResponse", "There is an error");
+            e.printStackTrace();
+        }
     }
+
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -276,33 +176,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onLocationChanged(Location location) {
 
-        Log.d("onLocationChanged", "entered");
-
-        mLastLocation = location;
-        if (mCurrLocationMarker != null) {
-            mCurrLocationMarker.remove();
-        }
-        //Place current location marker
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-
-        // Adding colour to the marker
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-
-        // Adding Marker to the Map
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
-
-        //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-
-        Log.d("onLocationChanged", String.format("latitude:%.3f longitude:%.3f", latitude, longitude));
-
-        Log.d("onLocationChanged", "Exit");
+//        Log.d("onLocationChanged", "entered");
+//
+//        mLastLocation = location;
+//        if (mCurrLocationMarker != null) {
+//            mCurrLocationMarker.remove();
+//        }
+//        //Place current location marker
+//        latitude = location.getLatitude();
+//        longitude = location.getLongitude();
+//        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        markerOptions.position(latLng);
+//        markerOptions.title("Current Position");
+//
+//        // Adding colour to the marker
+//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+//
+//        // Adding Marker to the Map
+//        mCurrLocationMarker = mMap.addMarker(markerOptions);
+//
+//        //move map camera
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+//
+//        Log.d("onLocationChanged", String.format("latitude:%.3f longitude:%.3f", latitude, longitude));
+//
+//        Log.d("onLocationChanged", "Exit");
     }
 
     @Override
