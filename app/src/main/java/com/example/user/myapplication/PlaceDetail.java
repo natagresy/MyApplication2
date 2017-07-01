@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,9 +27,12 @@ import static com.example.user.myapplication.ListLocation.API_KEY;
  * Created by User on 6/28/2017.
  */
 
-public class PlaceDetail extends AppCompatActivity {
+public class PlaceDetail extends AppCompatActivity implements View.OnClickListener {
     private ImageLoader mImageLoader;
     ImageLoader imageLoader;
+    double lat;
+    double lon;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +46,10 @@ public class PlaceDetail extends AppCompatActivity {
         final TextView detail_open = (TextView)findViewById(R.id.open_hour);
         final TextView detil_alamat = (TextView)findViewById(R.id.detail_address);
         final ImageView detil_foto = (ImageView)findViewById(R.id.foto_detail);
-        String id = getIntent().getExtras().getString("id");
+        id = getIntent().getExtras().getString("id");
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
         Call<Example> call = apiService.getDetailPlaces(id, API_KEY);
+        findViewById(R.id.btn_route).setOnClickListener(this);
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
@@ -53,6 +58,9 @@ public class PlaceDetail extends AppCompatActivity {
                 String telepon = response.body().getResult().getFormattedPhoneNumber();
                 String refrence = response.body().getResult().getPhotos().get(0).getPhotoReference();
                 String opening_hours="";
+                lat = response.body().getResult().getGeometry().getLocation().getLat();
+                lon = response.body().getResult().getGeometry().getLocation().getLng();
+
                 int size = response.body().getResult().getOpeningHours().getWeekdayText().size();
 
                 for(int i =0;i<size;i++){
@@ -102,5 +110,18 @@ public class PlaceDetail extends AppCompatActivity {
 //        detil_alamat.setText(alamat);
       // detil_foto.setImageBitmap(artUrl);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.btn_route:
+                Intent i = new Intent(PlaceDetail.this, MapsActivity.class);
+                i.putExtra("lat", lat);
+                i.putExtra("lon", lon);
+                i.putExtra("id1", id);
+                startActivity(i);
+                break;
+        }
     }
 }

@@ -96,7 +96,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         Log.d("myloc", String.valueOf(longitude));
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
         //Call<Example> call = apiService.getNearbyPlacesViaZomato("", count, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
-        Call<Example> call = apiService.getNearbyPlaces("restaurant", typeCodeResponse, latitude + "," + longitude, 30000, API_KEY);
+        Call<Example> call = apiService.getNearbyPlaces("restaurant", typeCodeResponse, latitude + "," + longitude, 3000, API_KEY);
 
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
