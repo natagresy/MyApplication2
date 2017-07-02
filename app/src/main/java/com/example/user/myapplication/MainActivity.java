@@ -27,7 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import me.relex.circleindicator.CircleIndicator;
 
-public class MainActivity extends AppCompatActivity implements LocationListener {
+public class MainActivity extends AppCompatActivity implements LocationListener, View.OnClickListener {
     private static ViewPager mPager;
     public static ArrayList<Integer> type_code = new ArrayList<Integer>();
     public static ArrayList<String> keyword = new ArrayList<String >();
@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+        findViewById(R.id.gotosearch).setOnClickListener(this);
         try{
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 1000, this);
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-           //Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
                 if(position==0){
                     keyword.clear();
                     keyword.add("Bakery");
@@ -168,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 Intent i = new Intent(MainActivity.this,ListLocation.class);
                 MainActivity.this.startActivity(i);
 
-                }
+            }
 
         });
 
@@ -227,6 +228,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return false;
         } else {
             return true;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.gotosearch:
+                Intent i = new Intent(MainActivity.this, ListLocation.class);
+                startActivity(i);
+                break;
         }
     }
 }

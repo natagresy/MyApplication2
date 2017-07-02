@@ -18,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 import com.example.user.myapplication.POJO.Example;
 import com.example.user.myapplication.POJO.Result;
@@ -44,6 +45,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     private ProgressBar spinner;
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
+    SearchView searchView;
 
 
     public final static String API_KEY = "AIzaSyAUF3gvrbu8V0_-RPPe44Xl_2Gwyw6bVlw";
@@ -83,6 +85,23 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
             }
         }
 
+        searchView=(SearchView) findViewById(R.id.search_view);
+        searchView.setQueryHint("Search View");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                callRequestApi(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                callRequestApi(newText);
+                return false;
+            }
+        });
+
 
     }
 
@@ -92,16 +111,18 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         mLastLocation = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-        Log.d("myloc", String.valueOf(latitude));
-        Log.d("myloc", String.valueOf(longitude));
+        callRequestApi(typeCodeResponse);
+    }
+
+    private void callRequestApi(String name){
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
         //Call<Example> call = apiService.getNearbyPlacesViaZomato("", count, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
-        Call<Example> call = apiService.getNearbyPlaces("restaurant", typeCodeResponse, latitude + "," + longitude, 3000, API_KEY);
+        Call<Example> call = apiService.getNearbyPlaces("restaurant", name, latitude + "," + longitude, 3000, API_KEY);
 
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-     //   recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        //   recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
@@ -178,17 +199,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                 Log.e(TAG, t.toString());
             }
         });
-
     }
-
-
-
-
-    /*public void startMaps(View view)
-    {
-        startActivity(new Intent(this, MapsActivity.class));
-    }
-*/
 
 
     @Override
