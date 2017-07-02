@@ -180,8 +180,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         mLastLocation = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-        Log.d("abcd", String.valueOf(latitude));
-        Log.d("abcd", String.valueOf(longitude));
     }
 
     @Override
@@ -235,6 +233,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.gotosearch:
+                keyword.clear();
+                keyword.add("thisisinitialstateqazx");
                 Intent i = new Intent(MainActivity.this, ListLocation.class);
                 startActivity(i);
                 break;

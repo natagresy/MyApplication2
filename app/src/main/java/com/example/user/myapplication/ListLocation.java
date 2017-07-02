@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.user.myapplication.POJO.Example;
 import com.example.user.myapplication.POJO.Result;
@@ -46,6 +47,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
     SearchView searchView;
+    TextView keterangan;
 
 
     public final static String API_KEY = "AIzaSyAUF3gvrbu8V0_-RPPe44Xl_2Gwyw6bVlw";
@@ -54,9 +56,19 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("ccc", "onCreate");
-        Log.d("checkList", String.valueOf(mainActivity.type_code.size()));
-        Log.d("checkList", String.valueOf(mainActivity.type_code));
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        keterangan = (TextView)findViewById(R.id.keterangan);
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+
+        if(mainActivity.keyword.contains("thisisinitialstateqazx")){
+            keterangan.setVisibility(View.VISIBLE);
+            spinner.setVisibility(View.GONE);
+        }
+        else{
+            keterangan.setVisibility(View.INVISIBLE);
+        }
+
         for(String data : mainActivity.keyword) {
             //Log.d("datanya", data.toString());
             //typeCodeResponse = data.toString();
@@ -65,8 +77,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         Log.d("typeCodeResponse", typeCodeResponse);
 
         mainActivity.type_code.size();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
 
         if (API_KEY.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please obtain your API KEY first!", Toast.LENGTH_LONG).show();
@@ -91,13 +102,25 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
             @Override
             public boolean onQueryTextSubmit(String query) {
-                callRequestApi(query);
+                if(query.length()>=3){
+                    callRequestApi(query);
+                    keterangan.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    keterangan.setVisibility(View.VISIBLE);
+                }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                callRequestApi(newText);
+                if(newText.length()>=3){
+                    callRequestApi(newText);
+                    keterangan.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    keterangan.setVisibility(View.VISIBLE);
+                }
                 return false;
             }
         });
@@ -131,7 +154,6 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                 final List<Result> location = response.body().getResults();
 
                 //loading spinner
-                spinner=(ProgressBar)findViewById(R.id.progressBar);
                 spinner.setVisibility(View.GONE);
 
                 recyclerView.setHasFixedSize(true);
