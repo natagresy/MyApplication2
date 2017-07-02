@@ -2,14 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListLocation">
+    tools:context=".ListLocation"
+    android:padding="10dp">
+
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:ems="10"
+        android:elevation="2dp"
+        android:background="#fff"
+        android:queryHint="I want to eat..."
+        android:iconifiedByDefault="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:textSize="15sp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:layout_above="@+id/btnshowall"
         android:layout_alignParentTop="true"/>
 
     <ProgressBar
@@ -20,14 +36,5 @@
         android:id="@+id/progressBar"
         android:progressDrawable="@drawable/loading_spinner" />
 
-    <Button
-        android:id="@+id/btnshowall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Show all restaurants in map"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-    <!--android:onClick="startMaps"-->
 
 </RelativeLayout>
