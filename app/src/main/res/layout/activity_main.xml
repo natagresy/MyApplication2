@@ -15,7 +15,7 @@
         android:background="#fff"
         android:queryHint="What do you want to eat?"
         android:iconifiedByDefault="false"
-        android:focusable="true"
+        android:focusable="false"
         android:focusableInTouchMode="false"
         android:textSize="15sp"/>
     <RelativeLayout
@@ -42,4 +42,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
         android:progressDrawable="@drawable/loading_spinner" />
+
+    <TextView
+        android:id="@+id/keterangan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="Msukan minimal 3 huruf" />
+
 </RelativeLayout>
