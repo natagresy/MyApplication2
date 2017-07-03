@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     Location mLastLocation;
 
     private static int currentPage = 0;
-    private static final Integer[] SLIDER= {R.drawable.bakery,
-            R.drawable.bakmibaso,
-            R.drawable.chinese,
-            R.drawable.dessert,
-            R.drawable.indonesian};
+    private static final Integer[] SLIDER= {R.drawable.banner5,
+            R.drawable.banner1,
+            R.drawable.banner2,
+            R.drawable.banner3,
+            R.drawable.banner4};
     private ArrayList<Integer> SLIDERArray = new ArrayList<Integer>();
 
     private void init() {

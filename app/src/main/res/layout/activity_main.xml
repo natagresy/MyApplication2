@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListLocation"
-    android:padding="10dp">
+    tools:context=".ListLocation">
     <SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         android:ems="10"
         android:elevation="2dp"
         android:background="#fff"
-        android:queryHint=""
         android:iconifiedByDefault="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
@@ -28,22 +26,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
-            android:layout_alignTop="@+id/progressBar"
             android:layout_alignParentStart="true"
             android:layout_marginTop="55dp" />
 
     </RelativeLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/search_view"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
-        android:progressDrawable="@drawable/loading_spinner" />
 
     <TextView
         android:id="@+id/keterangan"
@@ -51,6 +37,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:text="Msukan minimal 3 huruf" />
+        android:text="Masukan minimal 3 huruf" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/loading_spinner"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
