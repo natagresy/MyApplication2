@@ -90,7 +90,7 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                     }
                 }
                 catch (Exception e){
-                    opening_hours="tutup sampe akhir zaman";
+                    opening_hours="tutup";
                 }
 
 

@@ -135,7 +135,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             LatLng latLng = new LatLng(lat, lon);
             markerOptions.position(latLng);
             markerOptions.title(name);
-            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bakery));
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.rsz_1foodmark));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
             mMap.addMarker(markerOptions);
