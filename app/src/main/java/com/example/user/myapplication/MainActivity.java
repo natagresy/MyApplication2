@@ -72,12 +72,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         }, 2500, 2500);
     }
 
-
-
     //gridview buttons
     GridView grid;
     String[] web = {
-            "Bakery",
+            "Martabak",
             "Bakso dan Bakmi",
             "Chinese",
             "Dessert",
@@ -86,11 +84,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             "Minuman",
             "Seafood",
             "Steak"
-
     };
 
     int[] imageId = {
-            R.drawable.bakery,
+            R.drawable.martabak,
             R.drawable.bakmibaso,
             R.drawable.chinese,
             R.drawable.dessert,
@@ -99,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             R.drawable.minuman,
             R.drawable.seafood,
             R.drawable.steak
-
     };
 
     @Override
@@ -132,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 //Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
                 if(position==0){
                     keyword.clear();
-                    keyword.add("Bakery");
+                    keyword.add("martabak");
                 }
                 else if(position==1){
                     keyword.clear();
@@ -152,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 }
                 else if(position==5){
                     keyword.clear();
-                    keyword.add("martabak");
+                    keyword.add("nasi");
                 }
                 else if(position==6){
                     keyword.clear();

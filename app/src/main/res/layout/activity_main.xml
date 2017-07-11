@@ -5,6 +5,7 @@
     tools:context=".ListLocation">
     <SearchView
         android:id="@+id/search_view"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@android:drawable/ic_menu_search"
@@ -16,7 +17,7 @@
         android:iconifiedByDefault="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:textSize="15sp"/>
+        android:textSize="13sp"/>
     
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="55dp" />
+            android:layout_marginTop="65dp" />
 
     </RelativeLayout>
 
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:text="Masukan minimal 3 huruf" />
+        android:text="Masukkan minimal 3 huruf" />
 
     <ProgressBar
         android:id="@+id/progressBar"

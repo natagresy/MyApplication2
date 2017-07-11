@@ -61,7 +61,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         keterangan = (TextView)findViewById(R.id.keterangan);
         spinner=(ProgressBar)findViewById(R.id.progressBar);
 
-        if(mainActivity.keyword.contains("thisisinitialstateqazx")){
+        if(mainActivity.keyword.equals("")){
             keterangan.setVisibility(View.VISIBLE);
             spinner.setVisibility(View.GONE);
         }
@@ -76,7 +76,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         }
         Log.d("typeCodeResponse", typeCodeResponse);
 
-        mainActivity.type_code.size();
+      //  mainActivity.type_code.size();
 
 
         if (API_KEY.isEmpty()) {
@@ -97,7 +97,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         }
 
         searchView=(SearchView) findViewById(R.id.search_view);
-        searchView.setQueryHint("Search View");
+        searchView.setQueryHint("What do you want to eat?");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override

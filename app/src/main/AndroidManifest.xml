@@ -42,7 +42,7 @@
         </activity>
 
         <activity android:name=".ListLocation"
-            android:label="Restaurant List"
+            android:label="Discover"
             android:parentActivityName=".MainActivity">
             <!--for adding back button in action bar-->
             <meta-data
@@ -51,7 +51,7 @@
         </activity>
 
         <activity android:name=".PlaceDetail"
-            android:label="Restaurant's Detail"
+            android:label="Details"
             android:parentActivityName=".ListLocation">
             <!--for adding back button in action bar-->
             <meta-data

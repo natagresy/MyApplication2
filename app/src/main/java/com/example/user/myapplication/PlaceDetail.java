@@ -8,14 +8,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.user.myapplication.PLACEDETAIL.Example;
+import com.example.user.myapplication.PLACEDETAIL.Review;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,8 +37,14 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
     ImageLoader imageLoader;
     double lat;
     double lon;
-    String id, rating,opening_hours, name, alamat, telepon, refrence;
-    //String rating;
+    String id;
+    String rating;
+    String opening_hours;
+    String name;
+    String alamat;
+    String telepon;
+    String refrence;
+//    List<Review> review;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +61,7 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
         final TextView detail_open = (TextView)findViewById(R.id.open_hour);
         final TextView detil_alamat = (TextView)findViewById(R.id.detail_address);
         final ImageView detil_foto = (ImageView)findViewById(R.id.foto_detail);
+   //     final ListView lv_review = (ListView)findViewById(R.id.lv_review);
 
 
 
@@ -90,10 +102,8 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                     }
                 }
                 catch (Exception e){
-                    opening_hours="tutup";
+                    opening_hours="unknown detail";
                 }
-
-
 
                 detil_nama.setText(name);
                 detil_alamat.setText(alamat);
