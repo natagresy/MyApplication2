@@ -27,7 +27,8 @@ import me.relex.circleindicator.CircleIndicator;
 public class MainActivity extends AppCompatActivity implements LocationListener, View.OnClickListener {
     private static ViewPager mPager;
     public static ArrayList<Integer> type_code = new ArrayList<Integer>();
-    public static ArrayList<String> keyword = new ArrayList<String >();
+    public static String keyword;
+
     protected LocationManager locationManager;
     public static double latitude;
     public static double longitude;
@@ -57,7 +58,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 if (currentPage == SLIDER.length) {
                     currentPage = 0;
                 }
-                mPager.setCurrentItem(currentPage++, true);
+                try{
+                    mPager.setCurrentItem(currentPage++, true);
+                }
+                catch (Exception e){
+                    Log.d("donothing","donothing");
+                }
+
             }
         };
         Timer swipeTimer = new Timer();
@@ -124,40 +131,31 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                                     int position, long id) {
                 //Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
                 if(position==0){
-                    keyword.clear();
-                    keyword.add("martabak");
+                   keyword="martabak";
                 }
                 else if(position==1){
-                    keyword.clear();
-                    keyword.add("Bakso");
+                    keyword="bakso";
                 }
                 else if(position==2){
-                    keyword.clear();
-                    keyword.add("chinese");
+                    keyword="chinese";
                 }
                 else if(position==3){
-                    keyword.clear();
-                    keyword.add("ice");
+                    keyword="ice";
                 }
                 else if(position==4){
-                    keyword.clear();
-                    keyword.add("burger");
+                    keyword="burger";
                 }
                 else if(position==5){
-                    keyword.clear();
-                    keyword.add("nasi");
+                    keyword="nasi";
                 }
                 else if(position==6){
-                    keyword.clear();
-                    keyword.add("kopi");
+                    keyword="kopi";
                 }
                 else if(position==7){
-                    keyword.clear();
-                    keyword.add("seafood");
+                    keyword="seafood";
                 }
                 else if(position==8){
-                    keyword.clear();
-                    keyword.add("steak");
+                    keyword="steak";
                 }
                 Intent i = new Intent(MainActivity.this,ListLocation.class);
                 MainActivity.this.startActivity(i);
@@ -226,8 +224,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.gotosearch:
-                keyword.clear();
-                keyword.add("thisisinitialstateqazx");
+                keyword="10101010101";
                 Intent i = new Intent(MainActivity.this, ListLocation.class);
                 startActivity(i);
                 break;

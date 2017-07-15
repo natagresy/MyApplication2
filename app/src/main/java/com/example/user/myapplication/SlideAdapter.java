@@ -5,6 +5,7 @@ package com.example.user.myapplication;
  */
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,12 @@ public class SlideAdapter extends PagerAdapter {
         View myImageLayout = inflater.inflate(R.layout.slide, view, false);
         ImageView myImage = (ImageView) myImageLayout
                 .findViewById(R.id.image);
-        myImage.setImageResource(images.get(position));
+        try{
+            myImage.setImageResource(images.get(position));
+        }
+        catch (Exception e){
+            Log.d("donothing","donothing");
+        }
         view.addView(myImageLayout, 0);
         return myImageLayout;
     }
