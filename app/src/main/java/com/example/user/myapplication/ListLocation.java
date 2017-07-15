@@ -39,18 +39,17 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     protected LocationManager locationManager;
     public double latitude;
     public double longitude;
-    String typeCodeResponse ="";
     int count =1;
-    String temp;
     Location mLastLocation;
     private ProgressBar spinner;
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
     SearchView searchView;
     TextView keterangan;
+    int abb;
 
 
-    public final static String API_KEY = "AIzaSyAUF3gvrbu8V0_-RPPe44Xl_2Gwyw6bVlw";
+    public final static String API_KEY = "AIzaSyDDOWvxD03n2hy2z9t8IatTQvm3MFh35VQ";
     //public final static String API_KEY = "96ad755290420b10169661fd24185541";
 
 
@@ -68,16 +67,6 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         else{
             keterangan.setVisibility(View.INVISIBLE);
         }
-
-        for(String data : mainActivity.keyword) {
-            //Log.d("datanya", data.toString());
-            //typeCodeResponse = data.toString();
-            typeCodeResponse = typeCodeResponse + data+"%20";
-        }
-        Log.d("typeCodeResponse", typeCodeResponse);
-
-      //  mainActivity.type_code.size();
-
 
         if (API_KEY.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please obtain your API KEY first!", Toast.LENGTH_LONG).show();
@@ -134,7 +123,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
         mLastLocation = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-        callRequestApi(typeCodeResponse);
+        callRequestApi(mainActivity.keyword);
     }
 
     private void callRequestApi(String name){
@@ -152,6 +141,9 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                 int statusCode = response.code();
 
                 final List<Result> location = response.body().getResults();
+                location.size();
+                abb = response.body().getResults().size();
+                Log.d("indexcc", abb+"");
 
                 //loading spinner
                 spinner.setVisibility(View.GONE);
@@ -166,7 +158,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
                     @Override
                     public void onClick(View view, int position) {
-                        Log.d("catch", "test");
+                        Log.d("catch", abb+"");
                         Result result = location.get(position);
                         // Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(ListLocation.this,PlaceDetail.class);

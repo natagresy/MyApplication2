@@ -17,6 +17,8 @@ import com.example.user.myapplication.Utils.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
+import static com.example.user.myapplication.ListLocation.API_KEY;
+
 /**
  * Created by Nathasa Gresy on 5/25/17.
  */
@@ -101,7 +103,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
 
         try{
             refrence = location.get(position).getPhotos().get(0).getPhotoReference();
-            imageLoader.displayImage("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+refrence+"&key=AIzaSyAUF3gvrbu8V0_-RPPe44Xl_2Gwyw6bVlw", holder.item_image);
+            imageLoader.displayImage("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+refrence+"&key="+API_KEY, holder.item_image);
         }
         catch(Exception e){
             imageLoader.displayImage("http://www.sitechecker.eu/img/not-available.png", holder.item_image);

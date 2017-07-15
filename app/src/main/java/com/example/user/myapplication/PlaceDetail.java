@@ -29,6 +29,7 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
     private ImageLoader mImageLoader;
     ImageLoader imageLoader;
     private Button dialBtn;
+    private Button dialBtn1;
     double lat;
     double lon;
     String id;
@@ -80,6 +81,8 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                 }
                 catch (Exception e){
                     telepon = "phone not available";
+                    dialBtn1 = (Button) findViewById(R.id.btn_call);
+                    dialBtn1.setEnabled(false);
                 }
                 try{
                     refrence = response.body().getResult().getPhotos().get(0).getPhotoReference();
