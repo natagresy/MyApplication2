@@ -23,7 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.user.myapplication.POJO.Example;
 import com.example.user.myapplication.POJO.Result;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,9 +51,15 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     SearchView searchView;
     TextView keterangan;
     int abb;
+    List<Result> location;
+
 
 
     public final static String API_KEY = "AIzaSyDDOWvxD03n2hy2z9t8IatTQvm3MFh35VQ";
+
+    public ListLocation() {
+        location = null;
+    }
     //public final static String API_KEY = "96ad755290420b10169661fd24185541";
 
 
@@ -127,24 +137,46 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
     }
 
     private void callRequestApi(String name){
+
+
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
         //Call<Example> call = apiService.getNearbyPlacesViaZomato("", count, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
         Call<Example> call = apiService.getNearbyPlaces("restaurant", name, latitude + "," + longitude, 3000, API_KEY);
 
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+//
+//
+//            @Override
+//            public void onClick(View view, int position) {
+//                Log.d("catch", abb+"");
+//                //
+//                Result result = location.get(position);
+//                Log.d("gaudg", result.getName());
+////                        // Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
+////                        Intent i = new Intent(ListLocation.this,PlaceDetail.class);
+////                        i.putExtra("id", result.getPlaceId());
+////                        view.getContext().startActivity(i);
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {
+//
+//            }
+//        }));
 
         //   recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         call.enqueue(new Callback<Example>() {
-            @Override
-            public void onResponse(Call<Example> call, Response<Example> response) {
-                int statusCode = response.code();
 
-                final List<Result> location = response.body().getResults();
+            @Override
+            public void onResponse(Call<Example> call, final Response<Example> response) {
+                Log.d("catch", abb+"");
+                location = response.body().getResults();
+
                 location.size();
                 abb = response.body().getResults().size();
                 Log.d("indexcc", abb+"");
-
                 //loading spinner
                 spinner.setVisibility(View.GONE);
 
@@ -154,27 +186,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(new LocationAdapter(location, R.layout.row_layout, getApplicationContext()));
-                recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
 
-                    @Override
-                    public void onClick(View view, int position) {
-                        Log.d("catch", abb+"");
-                        Result result = location.get(position);
-                        // Toast.makeText(getApplicationContext(), resaurant.getRestaurant().getName() + " is selected!", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(ListLocation.this,PlaceDetail.class);
-                        i.putExtra("id", result.getPlaceId());
-//                        i.putExtra("detil_rating", resaurant.getRestaurant().getUserRating().getAggregateRating());
-//                        i.putExtra("detil_cuisine", resaurant.getRestaurant().getCuisines());
-//                        i.putExtra("detil_alamat", resaurant.getRestaurant().getLocation().getAddress());
-//                        i.putExtra("detil_foto", resaurant.getRestaurant().getFeaturedImage());
-                        view.getContext().startActivity(i);
-                    }
-
-                    @Override
-                    public void onLongClick(View view, int position) {
-
-                    }
-                }));
 
                 recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
                 {
@@ -213,6 +225,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
                 Log.e(TAG, t.toString());
             }
         });
+
     }
 
 

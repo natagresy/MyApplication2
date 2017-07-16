@@ -2,6 +2,7 @@ package com.example.user.myapplication;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -76,6 +77,25 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MovieV
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.namaResto.setText(location.get(position).getName());
         holder.address.setText(location.get(position).getVicinity());
+//        holder.namaResto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                mListener.onItemClicked(holder.namaResto);
+//
+//            }
+//        });
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),PlaceDetail.class);
+                intent.putExtra("id", location.get(position).getPlaceId());
+                v.getContext().startActivity(intent);
+            }
+        });
+
+//        holder.namaResto.setOnClickListener(new View.OnClickListener());
         double latRestaurant = location.get(position).getGeometry().getLocation().getLat();
         double longRestaurant = location.get(position).getGeometry().getLocation().getLng();
         double distance1 = Utils.distance(mainActivity.latitude, mainActivity.longitude, latRestaurant, longRestaurant, 'K');
