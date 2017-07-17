@@ -55,7 +55,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
 
 
-    public final static String API_KEY = "AIzaSyDDOWvxD03n2hy2z9t8IatTQvm3MFh35VQ";
+    public final static String API_KEY = "AIzaSyAUF3gvrbu8V0_-RPPe44Xl_2Gwyw6bVlw";
 
     public ListLocation() {
         location = null;
@@ -141,7 +141,7 @@ public class ListLocation extends AppCompatActivity implements LocationListener 
 
         RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
         //Call<Example> call = apiService.getNearbyPlacesViaZomato("", count, 100, location.getLatitude(), location.getLongitude(),300000, typeCodeResponse, API_KEY);
-        Call<Example> call = apiService.getNearbyPlaces("restaurant", name, latitude + "," + longitude, 3000, API_KEY);
+        Call<Example> call = apiService.getNearbyPlaces("bakery|bar|cafe|restaurant", name, latitude + "," + longitude, 3000, API_KEY);
 
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);

@@ -16,7 +16,7 @@ public interface RetrofitMaps {
      * And our method that will return us details of student.
      */
     @GET("api/place/nearbysearch/json?sensor=true")
-    Call<Example> getNearbyPlaces(@Query("type") String type,
+    Call<Example> getNearbyPlaces(@Query("types") String type,
                                   @Query("name") String name,
                                   @Query("location") String location,
                                   @Query("radius") int radius,
