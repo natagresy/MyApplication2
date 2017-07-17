@@ -134,22 +134,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                    keyword="martabak";
                 }
                 else if(position==1){
-                    keyword="bakso";
+                    keyword="bakso|bakmi|mi ayam|mie ayam";
                 }
                 else if(position==2){
                     keyword="chinese";
                 }
                 else if(position==3){
-                    keyword="ice";
+                    keyword="dessert|roti|ice";
                 }
                 else if(position==4){
-                    keyword="burger";
+                    keyword="fastfood|burger|pizza|kfc|cfc|mcd";
                 }
                 else if(position==5){
-                    keyword="nasi";
+                    keyword="nasi|sunda|padang|jawa";
                 }
                 else if(position==6){
-                    keyword="kopi";
+                    keyword="beverages|minuman|juice|tea|";
                 }
                 else if(position==7){
                     keyword="seafood";
