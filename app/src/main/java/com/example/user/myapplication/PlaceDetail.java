@@ -77,12 +77,22 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                     rating = "unrated";
                 }
                 try{
+                    Log.d("telponini", "try");
                     telepon = response.body().getResult().getFormattedPhoneNumber();
+                    if (telepon==null){
+                        Log.d("telponini", "masukif");
+                        telepon = "";
+                        dialBtn1 = (Button) findViewById(R.id.btn_call);
+                        dialBtn1.setEnabled(false);
+                        //dialBtn1.setVisibility(View.INVISIBLE);
+                    }
                 }
                 catch (Exception e){
-                    telepon = "phone not available";
+                    Log.d("telponini", "catch");
+                    telepon = "";
                     dialBtn1 = (Button) findViewById(R.id.btn_call);
                     dialBtn1.setEnabled(false);
+                    //dialBtn1.setVisibility(View.INVISIBLE);
                 }
                 try{
                     refrence = response.body().getResult().getPhotos().get(0).getPhotoReference();
@@ -96,7 +106,19 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                     int size = response.body().getResult().getOpeningHours().getWeekdayText().size();
                     for(int i =0;i<size;i++){
                         opening_hours = opening_hours + response.body().getResult().getOpeningHours().getWeekdayText().get(i) +"\n";
+                        Log.d("lalala", opening_hours);
                     }
+                    //if(opening_hours.contains("Monday")){
+                    opening_hours = opening_hours.replaceAll("Monday:", " Senin"+"\t"+"\t"+":"+"\n");
+                    opening_hours = opening_hours.replaceAll("Tuesday:", " Selasa"+"\t"+":"+"\n");
+                    opening_hours = opening_hours.replaceAll("Wednesday:", " Rabu"+"\t"+"\t"+":"+"\n");
+                    opening_hours = opening_hours.replaceAll("Thursday:", " Kamis"+"\t"+"\t"+":"+"\n");
+                    opening_hours = opening_hours.replaceAll("Friday:", " Jumat"+"\t"+"\t"+":"+"\n");
+                    opening_hours = opening_hours.replaceAll("Saturday:", " Sabtu"+"\t"+"\t"+":"+"\n");
+                    opening_hours = opening_hours.replaceAll("Sunday:", " Minggu"+"\t"+":"+"\n");
+                    opening_hours = opening_hours.replaceAll("Closed", "Tutup");
+
+                    //}
                 }
                 catch (Exception e){
                     opening_hours="unknown detail";
