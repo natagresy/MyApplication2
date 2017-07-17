@@ -118,7 +118,7 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                 // Load and display image asynchronously
 
                 DisplayImageOptions options = new DisplayImageOptions.Builder()
-                        .showStubImage(R.drawable.loadinganimasi) //this is the image that will be displayed if download fails
+                        .showStubImage(R.drawable.loaddd) //this is the image that will be displayed if download fails
                         .cacheInMemory()
                         .cacheOnDisc()
                         .build();

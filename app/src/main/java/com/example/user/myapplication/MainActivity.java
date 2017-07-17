@@ -2,14 +2,17 @@ package com.example.user.myapplication;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+        getGPSInfo();
         findViewById(R.id.gotosearch).setOnClickListener(this);
         try{
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -129,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                //Toast.makeText(MainActivity.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+
                 if(position==0){
                    keyword="martabak";
                 }
@@ -229,5 +233,72 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 startActivity(i);
                 break;
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage("Do you want to quit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user pressed "yes", then he is allowed to exit from application
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user select "No", just cancel this dialog and continue with app
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+    private void getGPSInfo() {
+        Criteria criteria = new Criteria();
+        String provider;
+        Location location;
+        LocationManager locationmanager = (LocationManager) this
+                .getSystemService(Context.LOCATION_SERVICE);
+
+        if (locationmanager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            provider = locationmanager.getBestProvider(criteria, false);
+            location = locationmanager.getLastKnownLocation(provider);
+
+        } else {
+            showGPSDisabledAlertToUser();
+        }
+    }
+
+
+    private void showGPSDisabledAlertToUser() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder
+                .setTitle("Location required")
+                .setMessage(
+                        "GPS is disabled in your device. Would you like to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Go to Settings",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent callGPSSettingIntent = new Intent(
+                                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivity(callGPSSettingIntent);
+
+                            }
+                        });
+
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
     }
 }
