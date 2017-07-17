@@ -62,12 +62,7 @@
         </activity>
 
         <activity android:name=".MapsActivity"
-            android:label="Direction"
-            android:parentActivityName=".PlaceDetail">
-            <!--for adding back button in action bar-->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PlaceDetail" />
+            android:label="Direction">
         </activity>
 
 
