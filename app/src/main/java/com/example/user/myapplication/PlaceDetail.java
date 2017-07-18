@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.user.myapplication.PLACEDETAIL.Example;
@@ -59,7 +60,6 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
 
 
 
-
             RetrofitMaps apiService = ApiClient.getClient().create(RetrofitMaps.class);
         Call<Example> call = apiService.getDetailPlaces(id, API_KEY);
 
@@ -74,7 +74,7 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                     rating= response.body().getResult().getRating().toString();
                 }
                 catch (Exception e){
-                    rating = "unrated";
+                    rating = "0.0";
                 }
                 try{
                     Log.d("telponini", "try");
@@ -109,14 +109,15 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                         Log.d("lalala", opening_hours);
                     }
                     //if(opening_hours.contains("Monday")){
-                    opening_hours = opening_hours.replaceAll("Monday:", " Senin"+"\t"+"\t"+":"+"\n");
-                    opening_hours = opening_hours.replaceAll("Tuesday:", " Selasa"+"\t"+":"+"\n");
-                    opening_hours = opening_hours.replaceAll("Wednesday:", " Rabu"+"\t"+"\t"+":"+"\n");
-                    opening_hours = opening_hours.replaceAll("Thursday:", " Kamis"+"\t"+"\t"+":"+"\n");
-                    opening_hours = opening_hours.replaceAll("Friday:", " Jumat"+"\t"+"\t"+":"+"\n");
-                    opening_hours = opening_hours.replaceAll("Saturday:", " Sabtu"+"\t"+"\t"+":"+"\n");
-                    opening_hours = opening_hours.replaceAll("Sunday:", " Minggu"+"\t"+":"+"\n");
+                    opening_hours = opening_hours.replaceAll("Monday:", " Senin"+"\t"+"\t"+":"+"\t");
+                    opening_hours = opening_hours.replaceAll("Tuesday:", " Selasa"+"\t"+":"+"\t");
+                    opening_hours = opening_hours.replaceAll("Wednesday:", " Rabu"+"\t"+"\t"+":"+"\t");
+                    opening_hours = opening_hours.replaceAll("Thursday:", " Kamis"+"\t"+":"+"\t");
+                    opening_hours = opening_hours.replaceAll("Friday:", " Jumat"+"\t"+":"+"\t");
+                    opening_hours = opening_hours.replaceAll("Saturday:", " Sabtu"+"\t"+"\t"+":"+"\t");
+                    opening_hours = opening_hours.replaceAll("Sunday:", " Minggu"+"\t"+":"+"\t");
                     opening_hours = opening_hours.replaceAll("Closed", "Tutup");
+
 
                     //}
                 }
@@ -129,6 +130,10 @@ public class PlaceDetail extends AppCompatActivity implements View.OnClickListen
                 detil_cuisine.setText(telepon);
                 detail_open.setText(opening_hours);
                 detil_rating.setText(rating);
+
+                float d= Float.parseFloat((rating));
+                RatingBar rb = (RatingBar) findViewById(R.id.rating_bar);
+                rb.setRating(d);
 
 
                 String image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1600&photoreference="+refrence+"&key="+API_KEY;

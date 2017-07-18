@@ -8,14 +8,14 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="1dp"
+    app:cardCornerRadius="2dp"
     app:cardElevation="2dp"
     android:padding="10dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:padding="8dp"
         android:horizontalSpacing="10dp"
         android:verticalSpacing="10dp">
 
@@ -28,13 +28,15 @@
             <TextView
                 android:id="@+id/title"
                 android:layout_margin="5dp"
+                android:paddingRight="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:text="Title"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorBlack"
+                style="?android:textAppearanceLarge"
                 android:fontFamily="sans-serif-condensed"/>
 
             <TextView
@@ -50,10 +52,10 @@
             <TextView
                 android:id="@+id/address"
                 android:textColor="@color/colorBlack"
-                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="alamat"
+                android:paddingRight="16dp"
                 android:layout_marginTop="5dp"
                 android:layout_alignStart="@+id/title"
                 android:layout_toLeftOf="@+id/rating"
@@ -62,6 +64,9 @@
             <TextView
                 android:id="@+id/rating"
                 android:textStyle="bold"
+                android:drawablePadding="2dp"
+                android:drawableLeft="@drawable/star"
+                android:drawableTint="@color/star"
                 android:textColor="@color/colorWhite"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
@@ -101,7 +106,7 @@
             android:id="@+id/item_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_margin="2dp"
+            android:layout_marginRight="8dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:layout_centerVertical="true"

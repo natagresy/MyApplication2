@@ -29,15 +29,17 @@
                 android:layout_weight="1"
                 android:scaleType="center" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="10dp"
                 android:background="@color/colorDetail"
+                android:paddingStart="16dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/title_detail"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginBottom="3dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,32 +47,47 @@
                     android:fontFamily="sans-serif-condensed"
                     android:textSize="20sp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="3dp"
                     android:text="Title"
-                    android:textColor="@color/colorWhite"
                     android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                <RatingBar android:id="@+id/rating_bar"
+                    android:progressTint="@color/star"
+                    android:secondaryProgressTint="@color/colorGreyLight"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    android:layout_below="@+id/title_detail"
+                    android:isIndicator="true"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/RatingBar"/>
+
                 <TextView
                     android:id="@+id/rating_detail"
-                    android:textStyle="bold"
+                    android:textColor="@color/colorWhite"
+                    android:layout_toRightOf="@id/rating_bar"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_below="@+id/title_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:text="rating"
-                    android:textColor="@color/colorWhite"
-                    android:layout_gravity="left"
                     android:fontFamily="sans-serif" />
                 <TextView
                     android:id="@+id/cuisine_detail"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:text="telepon"
-                    android:textColor="@color/colorWhite"
                     android:layout_gravity="left"
+                    android:layout_below="@id/rating_detail"
                     android:fontFamily="sans-serif"
                     android:layout_marginBottom="10dp"/>
 
-                </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,10 +150,9 @@
                         android:layout_marginBottom="5dp"/>
 
                     <View
-                        android:layout_width="fill_parent"
-                        android:paddingStart="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="60dp"
                         android:layout_height="1dp"
-                        android:layout_marginStart="10dp"
                         android:background="@color/colorDivider"/>
 
                     <TextView
@@ -152,10 +168,6 @@
                         android:text="opening hours"
                         android:textColor="@color/colorBlack" />
                 </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorDivider"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
     </ScrollView>
